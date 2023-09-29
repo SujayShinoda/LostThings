@@ -77,7 +77,6 @@ body {
 
 .circle {
  
-  background: radial-gradient(#e9e9e97b, #8253efd4);
   position: absolute;
   animation: move-up6 2s ease-in infinite alternate-reverse;
  
@@ -131,23 +130,37 @@ body {
 }
 
 
-.myButton {
-  width: 90px;
-  height: 90px;
-  border-radius: 15px;
+button {
+  width: 100%;
+  height: 5vh;
+  border-radius: 2vh;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background-color: rgb(255, 0, 0);
- 
- 
+  background-color: rgba(255, 0, 0, 0.516);
+  border: 0px;
+  cursor: pointer;
   outline: 0px;
-  padding: 0 2px;
+  padding: 0px;
   font-weight: 600;
   font-size: 18px;
   color: white;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+
+  backdrop-filter: blur(80px) contrast(2);
+
 }
 
+
+
+button:hover {
+  top: 48%;
+  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 20px;
+  backdrop-filter: blur(0px) contrast(2);
+}
+
+button:active {
+  box-shadow: none;
+}
 
 
 </style>
@@ -179,6 +192,17 @@ body {
     <tbody id="data-body">
     </tbody>
   </table>
+<br>
+
+
+    <button id="button">
+      Hover Me!
+    </button>
+
+ 
+
+
+
 
 </div>
 </div>
@@ -243,7 +267,7 @@ body {
 
 
 
-/** SENDING LOCATION IN EMAIL SHORTCUT **/
+/** SENDING LOCATION IN EMAIL SHORTCUT **
 
   navigator.geolocation.getCurrentPosition(function(position) {
   let latitude = position.coords.latitude;
@@ -278,38 +302,41 @@ body {
   
 
 
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function() {
 
-  let button = document.getElementsByClassName("myButton"); // Replace "myButton" with the ID of your button element
 
-  button.addEventListener("click", function() {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-  
-  
-  
-    let subjecta = "LostThings: Location Update";
-    let bodya = `Hi, Please find your device at this location on Google Maps: https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-  
-    let LocationLink = document.createElement("a");
-    LocationLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subjecta)}&body=${encodeURIComponent(bodya)}`;
-    document.body.appendChild(LocationLink);
-  
-  
-  
-  
+document.getElementById("button").addEventListener("click", function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          sendEmail(latitude, longitude);
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
     });
-  
-  });
+
+    function sendEmail(latitude, longitude) {
+      var emailUrl = "mailto:recipient@example.com"
+        + "?subject=User Location"
+        + "&body=Latitude: " + latitude + "%0D%0ALongitude: " + longitude;
+
+      window.open(emailUrl);
+    }
+
+
+
+
   </script>
 
 
 
 
 
-<div class="myButton"></div>
+
 
 </body>
 </html>
