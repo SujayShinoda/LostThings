@@ -137,9 +137,9 @@ body {
   border-radius: 15px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 0px;
-  cursor: pointer;
+  background-color: rgb(255, 0, 0);
+ 
+ 
   outline: 0px;
   padding: 0 2px;
   font-weight: 600;
@@ -147,30 +147,6 @@ body {
   color: white;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
-
-.backdrop {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  background-color: rgb(36, 33, 228);
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  border-radius: 15px;
-  transform: translateX(-50%) translateY(-50%);
-  transition: all ease-in-out 0.5s;
-}
-
-.myButton:hover + .backdrop {
-  top: 48%;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-  transform: rotate(15deg) translateX(-50%) translateY(-50%);
-}
-
-.myButton:active,.button:active +.backdrop {
-  box-shadow: none;
-}
-
 
 
 
@@ -267,7 +243,7 @@ body {
 
 
 
-/** SENDING LOCATION IN EMAIL SHORTCUT **
+/** SENDING LOCATION IN EMAIL SHORTCUT **/
 
   navigator.geolocation.getCurrentPosition(function(position) {
   let latitude = position.coords.latitude;
@@ -287,26 +263,7 @@ body {
 
 /** WORKING ON ADDING A BUTTON INSTEAD OF IMAGE **/
 
-let button = document.getElementsByClassName("myButton"); // Replace "myButton" with the ID of your button element
 
-button.addEventListener("click", function() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-
-
-
-  let subjecta = "LostThings: Location Update";
-  let bodya = `Hi, Please find your device at this location on Google Maps: https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-
-  let LocationLink = document.createElement("a");
-  LocationLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subjecta)}&body=${encodeURIComponent(bodya)}`;
-  document.body.appendChild(LocationLink);
-
-
-
-
-  });
 });
 
 
@@ -316,10 +273,42 @@ button.addEventListener("click", function() {
 
 
         });
-      })
-      .catch(error => console.log(error));
-  </script>
+      
+</script>
   
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  let button = document.getElementsByClassName("myButton"); // Replace "myButton" with the ID of your button element
+
+  button.addEventListener("click", function() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+  
+  
+  
+    let subjecta = "LostThings: Location Update";
+    let bodya = `Hi, Please find your device at this location on Google Maps: https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+  
+    let LocationLink = document.createElement("a");
+    LocationLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subjecta)}&body=${encodeURIComponent(bodya)}`;
+    document.body.appendChild(LocationLink);
+  
+  
+  
+  
+    });
+  
+  });
+  </script>
+
+
+
+
+
 <div class="myButton"></div>
 
 </body>
