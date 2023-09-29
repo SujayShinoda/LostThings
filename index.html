@@ -113,7 +113,7 @@ body {
 
  width: 20vh;
  height: 20vh;
-
+z-index: 100;
 
  
 }
@@ -130,7 +130,7 @@ body {
 }
 
 
-button {
+ button {
   width: 100%;
   height: 5vh;
   border-radius: 2vh;
@@ -146,21 +146,24 @@ button {
   color: white;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
 
-  backdrop-filter: blur(80px) contrast(2);
-
+  backdrop-filter: blur(00px) contrast(1);
+z-index: -100;
 }
 
 
 
 button:hover {
   top: 48%;
-  box-shadow: rgba(0, 0, 0, 0.3) 4px 4px 20px;
-  backdrop-filter: blur(0px) contrast(2);
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 20px;
+  
 }
 
 button:active {
   box-shadow: none;
+  transform: scale(1.02);
 }
+
+
 
 
 </style>
@@ -195,9 +198,7 @@ button:active {
 <br>
 
 
-    <button id="button">
-      Hover Me!
-    </button>
+  <button id="button">Send Location To Owner</button> 
 
  
 
@@ -214,7 +215,7 @@ button:active {
 
 
     // Fetch data from the API
-    fetch('https://script.google.com/macros/s/AKfycbzbzKyvB_tSjRGoGi6hlW5EzE3bBHJIw4RedZt2QvcQfXjK3Zt-eg69oGVOY6j9eNfX/exec')
+    fetch('https://script.google.com/macros/s/AKfycbyFsx_droJ4wApFje4wWCtfApgw1UqC1i6hzvmKbBuX87sRF8Ypdh7LyZutIQO0wXuz/exec')
       .then(response => response.json())
       .then(data => {
         const tableBody = document.getElementById('data-body');
@@ -269,7 +270,11 @@ button:active {
 
 /** SENDING LOCATION IN EMAIL SHORTCUT **/
 
+
+
+
   navigator.geolocation.getCurrentPosition(function(position) {
+    
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
 
@@ -279,8 +284,8 @@ button:active {
 
   let LocationLink = document.createElement("a");
   LocationLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subjecta)}&body=${encodeURIComponent(bodya)}`;
-  let imageSource = "loc.png";
-  LocationLink.innerHTML = `<img src="${imageSource}">`;
+
+  LocationLink.innerHTML = `<button id="button">Send Location To Owner</button>`;
   document.body.appendChild(LocationLink);
 });
 
@@ -292,19 +297,16 @@ button:active {
 
 
 
-
-
-
-
         });
       
 </script>
   
 
-
-
-
 <script>
+
+
+
+
 
 
 document.getElementById("button").addEventListener("click", function() {
@@ -328,6 +330,9 @@ document.getElementById("button").addEventListener("click", function() {
     }
 
 
+
+
+  </script>
 
 
   </script>
