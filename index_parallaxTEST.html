@@ -368,8 +368,8 @@ function handleOrientation(event) {
   var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
 
   // Set the maximum and minimum allowed values for tilt
-  var maxTilt = 30; // Maximum tilt angle in degrees
-  var minTilt = -30; // Minimum tilt angle in degrees
+  var maxTilt = 50; // Maximum tilt angle in degrees
+  var minTilt = -50; // Minimum tilt angle in degrees
 
   // Limit the tilt values within the specified range
   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
