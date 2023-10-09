@@ -167,8 +167,8 @@ button:active {
 
 #element {
       
-  transform: translate(0%, 0%) perspective(1000px) rotateX(0deg) rotateY(0deg);
-  transition: transform 0.01s;
+  transform: translate(0%, 0%) perspective(500px) rotateX(0deg) rotateY(0deg);
+  transition: transform 3s;
   
 
     }
@@ -357,14 +357,14 @@ document.getElementById("button").addEventListener("click", function() {
   var tiltY = event.gamma; // Get the phone's tilt along the y-axis
 
   // Set the maximum and minimum allowed values for tilt
-  var maxTilt = 30; // Maximum tilt angle in degrees
-  var minTilt = -30; // Minimum tilt angle in degrees
+  var maxTilt = 15; // Maximum tilt angle in degrees
+  var minTilt = -15; // Minimum tilt angle in degrees
 
   // Limit the tilt values within the specified range
   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
   tiltY = Math.max(Math.min(tiltY, maxTilt), minTilt);
 
-  box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+  box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
 }
 </script>
 
