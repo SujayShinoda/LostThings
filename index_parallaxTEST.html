@@ -426,10 +426,8 @@ function handleOrientation(event) {
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  background.style.transform = `translate(${tiltX / 100}px, ${tiltY / 100}px)`;
+  background.style.transform = `translate3d(${tiltX / 100}px, ${tiltY / 100}px, 0)`;
 }
-
-
 
 
 
