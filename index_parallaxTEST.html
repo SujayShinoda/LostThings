@@ -1,31 +1,420 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    #element {
-      width: 100px;
-      height: 100px;
-      background-color: red;
-      position: absolute;
-      top: 50%;
-      left: 50%;
+  <title>LostThings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<style>
+
+
+body {
+  background-image: url('Gekko/gekko.jpg');
+  background-size: cover; /* Adjust the background image size */
+  background-position: center center; /* Position the background image */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+  height: 85vh; /* Adjust the height as needed */
+  font-size: 3vh;
+  font-family:'Comfortaa';
+  color: rgb(227, 227, 227);
+
+
+  white-space: normal;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  
+ padding:3vh;
+
+ 
+
+ 
+
+}
+
+@keyframes this {
+    0% { opacity: 0%;}
+
+    80% { opacity: 0%;}
+
+    100% {  opacity:100%;}
+    }
+
+
+.card {
+ 
+  background: rgba(60, 60, 60, 0.449);
+  box-shadow: 2px 2px 30px rgb(0, 0, 0);
+  backdrop-filter: blur(8px);
+  border-radius: 4vh;
+  padding: 2vh;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.51);
+  animation: this 3.5s linear;
+
+
+
+
+
+  max-width: 100vh;
+  max-height:90vh;
+ 
+
+}
+
+
+
+
+
+
+
+.circle {
+ 
+  position: absolute;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+ 
+  
+ 
+
+}
+
+.circle:nth-child(1) {
+  top: -7vh;
+  left: -2vh;
+
+  border-radius: 50%;
+  box-shadow: 5px 5px 30px black;
+  background-image: url("logo.png");
+  background-size: cover;
+  background-position: center;
+  width:10vh;
+  height:10vh;
+
+
+
+}
+
+.circle:nth-child(2) {
+ bottom: -13vh;
+ right: -7vh;
+ animation-name: move-down1;
+
+ opacity: 90%;
+ background-image: url("Gekko/thing.png");
+ background-size: cover;
+ background-position: center;
+
+ width: 20vh;
+ height: 20vh;
+z-index: 100;
+
+ 
+}
+@keyframes move-up6 {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes move-down1 {
+  to {
+    transform: translateY(10px);
+  }
+}
+
+
+ button {
+  width: 100%;
+  height: 5vh;
+  border-radius: 2vh;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 0, 0, 0.516);
+  border: 0px;
+  cursor: pointer;
+  outline: 0px;
+  padding: 0px;
+  font-weight: 600;
+  font-size: 18px;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+
+  backdrop-filter: blur(00px) contrast(1);
+z-index: -100;
+}
+
+
+
+button:hover {
+  top: 48%;
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 20px;
+  
+}
+
+button:active {
+  box-shadow: none;
+  transform: scale(1.02);
+}
+
+
+#element {
+      
       transform: translate(-50%, -50%);
     }
-  </style>
+
+</style>
+
 </head>
 <body>
-  <div id="element"></div>
 
-  <script>
-    window.addEventListener('deviceorientation', handleOrientation);
+ 
 
-    function handleOrientation(event) {
-      var box = document.getElementById('element');
-      var moveX = event.gamma; // Get the phone's orientation along the x-axis
-      var moveY = event.beta; // Get the phone's orientation along the y-axis
 
-      box.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  <div id="element">
+
+
+
+
+
+
+
+    <div class="container">
+
+        
+ <div class="card">
+
+   
+
+
+       
+  <table id="data-table" style="text-align: left"> 
+    
+    <div class="circle"></div>
+    <div class="circle"></div>
+    
+   
+
+    <tbody id="data-body">
+    </tbody>
+  </table>
+<br>
+
+
+  <button id="button">Send Location To Owner</button> 
+
+ 
+
+
+
+
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+
+    // Fetch data from the API
+    fetch('https://script.google.com/macros/s/AKfycbxJ-F3v8vG0gpLAqnaCXQ8BdrNOgZUmrophpBm-EIJi0PvpS1UiNVWvtX1KLUgrgQLV/exec')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.getElementById('data-body');
+
+        // Iterate over the data and create table rows
+        data.data.forEach(item => {
+          const row = document.createElement('tr');
+          const UserCell = document.createElement('tr');
+          UserCell.textContent = "User: "+item.User;
+          const NameCell = document.createElement('tr');
+          NameCell.textContent = "Name: "+item.Name;
+          const EmailCell = document.createElement('tr');
+          EmailCell.textContent = "Email: "
+          const PhoneCell = document.createElement('tr');
+          PhoneCell.textContent = "Phone: ";
+          const NotesCell = document.createElement('tr');
+          NotesCell.textContent = "Notes: " +item.Notes;
+
+          const LocationLink = document.createElement('tr');
+          LocationLink.textContent = "Location: " +document.body;
+
+
+/** SENDING EMAIL SHORTCUT **/
+
+            let recipientEmail = item.Email;
+            let subject = "LostThings";
+            let body = "Hi, I found your device!";
+            let emailLink = document.createElement("a");      
+            emailLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            emailLink.innerText = "Send Email";
+            EmailCell.appendChild(emailLink);
+
+/** PHONECALL SHORTCUT **/
+
+
+            let call = item.Phone;
+            let link = document.createElement("a");
+            link.href = "tel:" + call;
+            link.innerText = item.Phone;
+            PhoneCell.appendChild(link);
+
+
+          
+          row.appendChild(NameCell);
+          row.appendChild(EmailCell);
+          row.appendChild(PhoneCell);
+          row.appendChild(NotesCell);
+         /** row.appendChild(LocationLink); **/
+          tableBody.appendChild(row);
+
+
+
+/** SENDING LOCATION IN EMAIL SHORTCUT **/
+
+
+
+
+  navigator.geolocation.getCurrentPosition(function(position) {
+    
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+
+  
+  let subjecta = "LostThings: Location Update";
+  let bodya = `Hi, Please find your device at this location on Google Maps: https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+
+  let LocationLink = document.createElement("a");
+  LocationLink.href = `mailto:${recipientEmail}?subject=${encodeURIComponent(subjecta)}&body=${encodeURIComponent(bodya)}`;
+
+  LocationLink.innerHTML = `<button id="button">Send Location To Owner</button>`;
+  document.body.appendChild(LocationLink);
+});
+
+
+/** WORKING ON ADDING A BUTTON INSTEAD OF IMAGE **/
+
+
+});
+
+
+
+        });
+      
+</script>
+  
+
+<script>
+
+
+
+
+
+
+document.getElementById("button").addEventListener("click", function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          sendEmail(latitude, longitude);
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    });
+
+    function sendEmail(latitude, longitude) {
+      var emailUrl = "mailto:recipient@example.com"
+        + "?subject=User Location"
+        + "&body=Latitude: " + latitude + "%0D%0ALongitude: " + longitude;
+
+      window.open(emailUrl);
     }
+
+
+
+
   </script>
+
+
+<script>
+  window.addEventListener('deviceorientation', handleOrientation);
+
+  function handleOrientation(event) {
+    var box = document.getElementById('element');
+    var moveX = event.gamma; // Get the phone's orientation along the x-axis
+    var moveY = event.beta; // Get the phone's orientation along the y-axis
+
+    box.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  }
+</script>
+
+
+
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+ 
+
+  
