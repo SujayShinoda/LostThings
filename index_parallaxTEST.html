@@ -5,6 +5,9 @@
   <title>LostThings</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <style>
 
 
@@ -391,22 +394,25 @@ document.getElementById("button").addEventListener("click", function() {
 
 
 
+
+
+
 var initialOrientation = null;
 
-window.addEventListener('deviceorientation', handleOrientation);
+$(window).on('deviceorientation', handleOrientation);
 
 function handleOrientation(event) {
   if (!initialOrientation) {
     initialOrientation = {
-      beta: event.beta,
-      gamma: event.gamma
+      beta: event.originalEvent.beta,
+      gamma: event.originalEvent.gamma
     };
   }
 
-  var box = document.getElementById('element');
-  var background = document.getElementById('body'); // Replace 'body-id' with the actual ID of the body element
-  var tiltX = -(event.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
-  var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
+  var box = $('#element');
+  var background = $('#body'); // Replace 'body-id' with the actual ID of the body element
+  var tiltX = -(event.originalEvent.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
+  var tiltY = (event.originalEvent.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
 
   // Set the maximum and minimum allowed values for tilt
   var maxTilt = 35; // Maximum tilt angle in degrees
@@ -418,13 +424,13 @@ function handleOrientation(event) {
 
   if (tiltX === maxTilt || tiltX === minTilt || tiltY === maxTilt || tiltY === minTilt) {
     initialOrientation = {
-      beta: event.beta,
-      gamma: event.gamma
+      beta: event.originalEvent.beta,
+      gamma: event.originalEvent.gamma
     };
   }
 
-  box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  background.style.transform = `translate3d(${tiltX / 100}px, ${tiltY / 100}px, 0)`;
+  box.css('transform', `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
+  background.css('transform', `translate3d(${tiltX / 100}px, ${tiltY / 100}px, 0)`);
 }
 
 
