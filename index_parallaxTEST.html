@@ -349,7 +349,9 @@ document.getElementById("button").addEventListener("click", function() {
 
 
 <script>
- var initialOrientation = null;
+
+
+var initialOrientation = null;
 
 window.addEventListener('deviceorientation', handleOrientation);
 
@@ -373,8 +375,35 @@ function handleOrientation(event) {
   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
   tiltY = Math.max(Math.min(tiltY, maxTilt), minTilt);
 
+  if (tiltX === maxTilt || tiltX === minTilt || tiltY === maxTilt || tiltY === minTilt) {
+    initialOrientation = {
+      beta: event.beta,
+      gamma: event.gamma
+    };
+  }
+
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 
@@ -387,54 +416,3 @@ function handleOrientation(event) {
 </html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-  
- 
-
-  
