@@ -425,7 +425,7 @@ function handleOrientation(event) {
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  background.style.backgroundPosition = `${tiltX / 100}px ${tiltY / 100}px`; // Adjust the background position based on tilt
+  background.style.backgroundPosition = `${tiltX / 1000}px ${tiltY / 1000}px`; // Adjust the background position based on tilt
 }
 
 
