@@ -358,6 +358,7 @@ document.getElementById("button").addEventListener("click", function() {
 
 
 
+
 var initialOrientation = null;
 var accumulatedTiltX = 0;
 var accumulatedTiltY = 0;
@@ -387,19 +388,13 @@ function handleOrientation(event) {
   if (tiltX === maxTilt || tiltX === minTilt || tiltY === maxTilt || tiltY === minTilt) {
     accumulatedTiltX += -(event.beta - initialOrientation.beta);
     accumulatedTiltY += (event.gamma - initialOrientation.gamma);
+  } else {
+    accumulatedTiltX = 0;
+    accumulatedTiltY = 0;
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 }
-
-
-
-
-
-
-
-
-
 
 
 
