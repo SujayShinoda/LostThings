@@ -352,8 +352,8 @@ document.getElementById("button").addEventListener("click", function() {
     var box = document.getElementById('element');
     var moveX = event.gamma; // Get the phone's orientation along the x-axis
     var moveY = event.beta; // Get the phone's orientation along the y-axis
-
-    box.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    var moveZ = event.alpha; // Get the phone's orientation along the z-axis
+    box.style.transform = `translate(${moveX}px, ${moveY}px, ${moveZ}px) rotate(${event.gamma}deg)`;
   }
 </script>
 
