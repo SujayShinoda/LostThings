@@ -406,7 +406,7 @@ function handleOrientation(event) {
   }
 
   var box = document.getElementById('element');
-  var background = document.querySelector('body'); // Replace '.body-class' with the actual class of the body element
+  var background = document.querySelector('.body'); // Replace '.body-class' with the actual class of the body element
   var tiltX = -(event.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
   var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
 
