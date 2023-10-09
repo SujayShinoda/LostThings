@@ -167,8 +167,8 @@ button:active {
 
 #element {
       
-  transform: translate(-50%, -50%) perspective(1000px) rotateX(0deg) rotateY(0deg);
-  transition: transform 0.3s;
+  transform: translate(0%, 0%) perspective(1000px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.01s;
   
 
     }
@@ -356,7 +356,7 @@ function handleOrientation(event) {
   var tiltX = event.beta; // Get the phone's tilt along the x-axis
   var tiltY = event.gamma; // Get the phone's tilt along the y-axis
 
-  box.style.transform = `translate(-50%, -50%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+  box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 }
 </script>
 
