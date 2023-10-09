@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #element {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="element"></div>
+
+  <script>
+    window.addEventListener('deviceorientation', handleOrientation);
+
+    function handleOrientation(event) {
+      var box = document.getElementById('element');
+      var moveX = event.gamma; // Get the phone's orientation along the x-axis
+      var moveY = event.beta; // Get the phone's orientation along the y-axis
+
+      box.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    }
+  </script>
+</body>
+</html>
