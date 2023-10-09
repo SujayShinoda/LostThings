@@ -168,7 +168,7 @@ button:active {
 #element {
       
   transform: translate(0%, 0%) perspective(500px) rotateX(0deg) rotateY(0deg);
-  transition: transform 3s;
+  transition: transform 1s;
   
 
     }
@@ -364,7 +364,7 @@ document.getElementById("button").addEventListener("click", function() {
   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
   tiltY = Math.max(Math.min(tiltY, maxTilt), minTilt);
 
-  box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltY}deg) rotateY(${tiltX}deg)`;
+  box.style.transform = `translate(0%, 0%) perspective(500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 }
 </script>
 
