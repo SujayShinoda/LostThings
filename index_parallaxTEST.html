@@ -410,7 +410,7 @@ function handleOrientation(event) {
   }
 
   var box = $('#element');
-  var background = $('#body'); // Replace 'body-id' with the actual ID of the body element
+  var background = $('body'); // Replace 'body-id' with the actual ID of the body element
   var tiltX = -(event.originalEvent.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
   var tiltY = (event.originalEvent.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
 
@@ -429,7 +429,7 @@ function handleOrientation(event) {
     };
   }
 
-  box.css('transform', `translate(20%, 20%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
+  box.css('transform', `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`);
   background.css('transform', `translate3d(${tiltX / 100}px, ${tiltY / 100}px, 0)`);
 }
 
