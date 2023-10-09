@@ -351,6 +351,47 @@ document.getElementById("button").addEventListener("click", function() {
 <script>
 
 
+// var initialOrientation = null;
+
+// window.addEventListener('deviceorientation', handleOrientation);
+
+// function handleOrientation(event) {
+//   if (!initialOrientation) {
+//     initialOrientation = {
+//       beta: event.beta,
+//       gamma: event.gamma
+//     };
+//   }
+
+//   var box = document.getElementById('element');
+//   var tiltX = -(event.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
+//   var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
+
+//   // Set the maximum and minimum allowed values for tilt
+//   var maxTilt = 35; // Maximum tilt angle in degrees
+//   var minTilt = -35; // Minimum tilt angle in degrees
+
+//   // Limit the tilt values within the specified range
+//   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
+//   tiltY = Math.max(Math.min(tiltY, maxTilt), minTilt);
+
+//   if (tiltX === maxTilt || tiltX === minTilt || tiltY === maxTilt || tiltY === minTilt) {
+//     initialOrientation = {
+//       beta: event.beta,
+//       gamma: event.gamma
+//     };
+//   }
+
+//   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+
+
+// }
+
+
+
+
+
 var initialOrientation = null;
 
 window.addEventListener('deviceorientation', handleOrientation);
@@ -364,12 +405,13 @@ function handleOrientation(event) {
   }
 
   var box = document.getElementById('element');
+  var background = document.getElementById('background'); // Replace 'background' with the ID of your background image element
   var tiltX = -(event.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
   var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
 
   // Set the maximum and minimum allowed values for tilt
-  var maxTilt = 50; // Maximum tilt angle in degrees
-  var minTilt = -50; // Minimum tilt angle in degrees
+  var maxTilt = 35; // Maximum tilt angle in degrees
+  var minTilt = -35; // Minimum tilt angle in degrees
 
   // Limit the tilt values within the specified range
   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
@@ -383,14 +425,9 @@ function handleOrientation(event) {
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  background.style.backgroundPosition = `${tiltX}px ${tiltY}px`;
-
+  background.style.transform = `translate(${tiltX / 2}px, ${tiltY / 2}px)`; // Adjust the background position based on tilt
 
 }
-
-
-
-
 
 
 
