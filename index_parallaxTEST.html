@@ -12,7 +12,7 @@ body {
   background-image: url('Gekko/gekko.jpg');
   background-size: cover; /* Adjust the background image size */
   background-position: center center; /* Position the background image */
-  /* background-attachment: fixed; */
+  background-attachment: fixed;
   background-repeat: no-repeat;
   height: 100%;
   overflow: hidden;
@@ -176,7 +176,7 @@ button:active {
 </style>
 
 </head>
-<body>
+<body id="body">
 
  
 
@@ -405,7 +405,7 @@ function handleOrientation(event) {
   }
 
   var box = document.getElementById('element');
-  var background = document.getElementById('background'); // Replace 'background' with the ID of your background image element
+  var background = document.getElementById('body'); // Replace 'background' with the ID of your background image element
   var tiltX = -(event.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
   var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
 
