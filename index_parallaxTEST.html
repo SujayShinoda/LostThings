@@ -388,7 +388,6 @@ document.getElementById("button").addEventListener("click", function() {
 
 // }
 
-
 var initialOrientation = null;
 
 window.addEventListener('deviceorientation', handleOrientation);
@@ -422,10 +421,8 @@ function handleOrientation(event) {
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  background.style.transform = `perspective(1000px) rotateX(${-tiltX}deg) rotateY(${-tiltY}deg)`;
+  background.style.transform = `translate(${tiltX / 5}px, ${tiltY / 5}px)`;
 }
-
-
 
 
 
