@@ -351,7 +351,16 @@ document.getElementById("button").addEventListener("click", function() {
 <script>
 
 
+
+
+
+
+
+
+
 var initialOrientation = null;
+var accumulatedTiltX = 0;
+var accumulatedTiltY = 0;
 
 window.addEventListener('deviceorientation', handleOrientation);
 
@@ -364,8 +373,8 @@ function handleOrientation(event) {
   }
 
   var box = document.getElementById('element');
-  var tiltX = -(event.beta - initialOrientation.beta); // Calculate the difference from initial orientation along the x-axis
-  var tiltY = (event.gamma - initialOrientation.gamma); // Calculate the difference from initial orientation along the y-axis
+  var tiltX = -(event.beta - initialOrientation.beta) + accumulatedTiltX; // Calculate the accumulated tilt along the x-axis
+  var tiltY = (event.gamma - initialOrientation.gamma) + accumulatedTiltY; // Calculate the accumulated tilt along the y-axis
 
   // Set the maximum and minimum allowed values for tilt
   var maxTilt = 50; // Maximum tilt angle in degrees
@@ -376,20 +385,12 @@ function handleOrientation(event) {
   tiltY = Math.max(Math.min(tiltY, maxTilt), minTilt);
 
   if (tiltX === maxTilt || tiltX === minTilt || tiltY === maxTilt || tiltY === minTilt) {
-    initialOrientation = {
-      beta: event.beta,
-      gamma: event.gamma
-    };
+    accumulatedTiltX += -(event.beta - initialOrientation.beta);
+    accumulatedTiltY += (event.gamma - initialOrientation.gamma);
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 }
-
-
-
-
-
-
 
 
 
