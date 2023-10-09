@@ -10,7 +10,7 @@
 
 body {
   background-image: url('Gekko/gekko.jpg');
-  background-size: 300%; /* Adjust the background image size */
+  background-size: 400%; /* Adjust the background image size */
   /* background-size: cover; */
   background-position: center center; /* Position the background image */
   /* background-attachment: fixed; */
@@ -426,8 +426,7 @@ function handleOrientation(event) {
   }
 
   box.style.transform = `translate(0%, 0%) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-  background.style.transform = `translate(${tiltX / 100}px, ${tiltY / 100}px)`; // Adjust the background position based on tilt
-
+  background.style.backgroundPosition = `${tiltX / 100}px ${tiltY / 100}px`; // Adjust the background position based on tilt
 }
 
 
