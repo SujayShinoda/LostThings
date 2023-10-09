@@ -167,8 +167,8 @@ button:active {
 
 #element {
       
-  transform: translate(0%, 0%) perspective(500px) rotateX(0deg) rotateY(0deg);
-  transition: transform 0.4s;
+  transform: translate(0%, 0%) perspective(200px) rotateX(0deg) rotateY(0deg);
+  transition: transform 0.01s;
   
 
     }
@@ -373,7 +373,7 @@ function handleOrientation(event) {
   tiltX = Math.max(Math.min(tiltX, maxTilt), minTilt);
   tiltY = Math.max(Math.min(tiltY, maxTilt), minTilt);
 
-  box.style.transform = `translate(0%, 0%) perspective(500px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+  box.style.transform = `translate(0%, 0%) perspective(200px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 }
 </script>
 
